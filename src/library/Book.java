@@ -1,5 +1,7 @@
 package library;
-
+/*
+ * Coral
+ * */
 public class Book{
 	private String id;
 	private String ISBN;
@@ -29,7 +31,7 @@ public class Book{
 	public void setLoanTo(Member loanTo) {
 		LoanTo = loanTo;
 	}
-	
+	//添加书籍
 	public Book(String id,String ISBN,String title){
 		this.id=id;
 		this.ISBN=ISBN;

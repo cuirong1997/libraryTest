@@ -1,5 +1,7 @@
 package library;
-
+/*
+ * Coral
+ * */
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +34,7 @@ public class Member {
 		Loan loan=FindCurrentLoan(book);
 		if (loan != null){
 			loan.MarkAsReturn();
-			System.out.println("成功归还");
+			System.out.println(getName()+"成功归还《"+book.getTitle()+"》");
 			book.setLoanTo(null);
 		}
 	}
@@ -41,13 +43,13 @@ public class Member {
 	public boolean canLoanBook(Book book){
 		
 		if(book.getLoanTo()!=null){
-			System.out.println("借书失败");
+			System.out.println("《"+book.getTitle()+"》已经借出"+getName()+"借书失败");
 			return false;
 		}
 		
 		HasReachMaxSpecification has=new HasReachMaxSpecification();
 		if(!has.IsSatisfiedBy(this)){
-			System.out.println("已经达到借书上限");
+			System.out.println(getName()+"已经达到借书上限，请归还在借书之后重试");
 			return false;
 		}
 		
@@ -57,7 +59,7 @@ public class Member {
 	
 	public Loan loanBook(Book book){
 		if(!canLoanBook(book)){
-			System.out.println("无法被借出");
+			System.out.println("书籍《"+book.getTitle()+"》不能被借");
 			return null;
 		}
 		Loan loan=LoanFactory.CreateLoan(book, this);
@@ -72,7 +74,7 @@ public class Member {
 		}
 		for(Loan loan:loans){
 			if(loan.getBook().getId().equals(book.getId())&&loan.HasNotBeenReturn()){
-				System.out.println(getName()+"存在"+book.getId()+"的《"+book.getTitle()+"》");
+				System.out.println(getName()+"存在借阅编号为:"+book.getId()+"的《"+book.getTitle()+"》记录");
 				return loan;
 			}
 		}

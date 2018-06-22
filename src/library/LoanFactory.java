@@ -1,5 +1,7 @@
 package library;
-
+/*
+ * Coral
+ * */
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -11,7 +13,7 @@ public class LoanFactory {
 		loan.setBook(book);
 		loan.setLoanDate(LocalDateTime.now());
 		loan.setMember(member);
-		System.out.println("借书成功");
+		System.out.println(member.getName()+"借阅《"+book.getTitle()+"》成功");
 		return loan;
 		
 	}
