@@ -42,6 +42,11 @@ public class Member {
 	
 	public boolean canLoanBook(Book book){
 		
+		LoanOnlyOneSpecification only=new LoanOnlyOneSpecification(book);
+		if(!only.IsSatisfiedBy(this)){
+			return false;
+		}
+		
 		if(book.getLoanTo()!=null){
 			System.out.println("《"+book.getTitle()+"》已经借出"+getName()+"借书失败");
 			return false;
@@ -53,8 +58,8 @@ public class Member {
 			return false;
 		}
 		
-		LoanOnlyOneSpecification only=new LoanOnlyOneSpecification(book);
-		return only.IsSatisfiedBy(this);
+		
+		return true;
 		}
 	
 	public Loan loanBook(Book book){
